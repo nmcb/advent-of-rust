@@ -1,6 +1,6 @@
 use std::num::ParseIntError;
 
-struct Present {
+pub struct Present {
     l: u32,
     w: u32,
     h: u32,
@@ -31,9 +31,9 @@ pub fn parse(input: &str) -> Vec<Present> {
 }
 
 pub fn solve1(input: &[Present]) -> u32 {
-    input.iter().map(|[l, w, h]| 2 * (l * w + w * h + h * l) + l * w).sum()
+    input.iter().map(|p| p.paper_required()).sum()
 }
 
 pub fn solve2(input: &[Present]) -> u32 {
-    input.iter().map(|[l, w, h]| 2 * (l + w) + (l * w * h)).sum()
+    input.iter().map(|p| p.ribbon_required()).sum()
 }

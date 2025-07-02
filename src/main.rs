@@ -19,15 +19,16 @@ fn main() {
             let (part1, part2) = wrapper(data);
             duration += instant.elapsed();
 
-            println!("{BOLD}{YELLOW}{year} Day {day:02}{RESET}");
+            println!("{year} Day {day:02}");
             println!("    Part 1: {part1}");
             println!("    Part 2: {part2}");
         } else {
-            eprintln!("{BOLD}{RED}{year} Day {day:02}{RESET}");
+            eprintln!("{year} Day {day:02}");
             eprintln!("    Missing input!");
-            eprintln!("    Place input file in {BOLD}{WHITE}{}{RESET}", path.display());
+            eprintln!("    Place input file in {}", path.display());
         }
     }
+    println!("🕓 {}ms", duration.as_millis());
 }
 
 macro_rules! run {
@@ -48,15 +49,15 @@ macro_rules! run {
                     (part1.to_string(), part2.to_string())
                 };
 
-                Solution { year: year.unsigned(), day: day.unsigned(), path, wrapper }
+                Solution { year: year.to_string(), day: day.to_string(), path, wrapper }
             },)*]
         }
     }
 }
 
 struct Solution {
-    year: u32,
-    day: u32,
+    year: String,
+    day: String,
     path: PathBuf,
     wrapper: fn(String) -> (String, String),
 }
