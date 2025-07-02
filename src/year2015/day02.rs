@@ -1,6 +1,6 @@
 use std::num::ParseIntError;
 
-struct Present {
+pub struct Present {
     l: u32,
     w: u32,
     h: u32,
@@ -15,28 +15,25 @@ impl Present {
     }
 }
 
-fn parse(input: &str) -> Vec<Present> {
-    let presents: Result<Vec<Present>, ParseIntError> = input.lines().map(|l| {
-            l.split('x')
-                .map(|f| f.parse::<u32>())
-                .collect::<Result<Vec<u32>, std::num::ParseIntError>>()
-                .map(|mut p| {
-                    p.sort_unstable();
-                    Present { l: p[0], w: p[1], h: p[2] }
-                })
-        })
+pub fn parse(input: &str) -> Vec<Present> {
+    let presents: Result<Vec<Present>, ParseIntError> = input.lines().map(|l| l.split('x')
+        .map(|f| f.parse::<u32>())
+        .collect::<Result<Vec<u32>, ParseIntError>>()
+        .map(|mut p| {
+            p.sort_unstable();
+            Present { l: p[0], w: p[1], h: p[2] }
+        }))
         .collect();
     match presents {
         Ok(result) => result,
         Err(msg) => panic!("error: {}", msg)
     }
-
 }
 
-pub fn answer1(input: &str) -> u32 {
-    parse(input).iter().map(|p| p.paper_required()).sum()
+pub fn solve1(input: &[Present]) -> u32 {
+    input.iter().map(|p| p.paper_required()).sum()
 }
 
-pub fn answer2(input: &str) -> u32 {
-    parse(input).iter().map(|p| p.ribbon_required()).sum()
+pub fn solve2(input: &[Present]) -> u32 {
+    input.iter().map(|p| p.ribbon_required()).sum()
 }

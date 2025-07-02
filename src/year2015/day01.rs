@@ -1,18 +1,27 @@
-pub fn answer1(input: &str) -> i32 {
-    let mut result = 0; 
-    for c in input.chars() {
-        if c == '(' { result += 1 } else { result -= 1 }
+pub fn parse(input: &str) -> Vec<i32> {
+    fn helper(b: u8) -> i32 {
+        match b {
+            b'(' => 1,
+            b')' => -1,
+            _ => 0,
+        }
     }
-    result
+    input.bytes().map(helper).collect()
 }
 
-pub fn answer2(input: &str) -> i32 {
-    let mut counter = 0;
-    let mut result = 0;
-    for c in input.chars() {
-        counter += 1;
-        if c == '(' { result += 1 } else { result -= 1 }
-        if result == -1 { break }
+pub fn solve1(input: &[i32]) -> i32 {
+    input.iter().sum()
+}
+
+pub fn solve2(input: &[i32]) -> usize {
+    let mut floor = 0;
+
+    for (i, x) in input.iter().enumerate() {
+        floor += x;
+        if floor < 0 {
+            return i + 1;
+        }
     }
-    counter
+
+    unreachable!()
 }
