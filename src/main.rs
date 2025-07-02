@@ -13,33 +13,32 @@ fn main() {
 
     let mut duration = Duration::ZERO;
 
-    for Solution { year, day, path, wrapper } in &solutions {
+    for Runner { year, day, path, execute } in &solutions {
         if let Ok(data) = read_to_string(path) {
             let instant = Instant::now();
-            let (part1, part2) = wrapper(data);
+            let (answer1, answer2) = execute(data);
             duration += instant.elapsed();
 
-            println!("{year} Day {day:02}");
-            println!("    Part 1: {part1}");
-            println!("    Part 2: {part2}");
+            println!("{year} Day {day:02} [{}ms]", duration.as_millis());
+            println!("    Answer 1: {answer1}");
+            println!("    Answer 2: {answer2}");
         } else {
             eprintln!("{year} Day {day:02}");
             eprintln!("    Missing input!");
             eprintln!("    Place input file in {}", path.display());
         }
     }
-    println!("🕓 {}ms", duration.as_millis());
 }
 
 macro_rules! run {
     ($year:tt $($day:tt),*) => {
-        fn $year() -> Vec<Solution> {
+        fn $year() -> Vec<Runner> {
             vec![$({
                 let year = stringify!($year);
                 let day  = stringify!($day);
                 let path = Path::new("input").join(year).join(day).with_extension("txt");
 
-                let wrapper = |data: String| {
+                let execute = |data: String| {
                     use $year::$day::*;
 
                     let input = parse(&data);
@@ -49,17 +48,17 @@ macro_rules! run {
                     (part1.to_string(), part2.to_string())
                 };
 
-                Solution { year: year.to_string(), day: day.to_string(), path, wrapper }
+                Runner { year: year.to_string(), day: day.to_string(), path, execute }
             },)*]
         }
     }
 }
 
-struct Solution {
+struct Runner {
     year: String,
     day: String,
     path: PathBuf,
-    wrapper: fn(String) -> (String, String),
+    execute: fn(String) -> (String, String),
 }
 
 run!(year2015
