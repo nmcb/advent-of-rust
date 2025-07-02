@@ -3,17 +3,17 @@ use std::iter::empty;
 use std::path::{Path, PathBuf};
 use std::time::{Duration, Instant};
 
+use aoc::*;
 
-pub mod year2015;
 
 fn main() {
-    let solutions: Vec<_> = empty()
+    let runners: Vec<_> = empty()
         .chain(year2015())
         .collect();
 
     let mut duration = Duration::ZERO;
 
-    for Runner { year, day, path, execute } in &solutions {
+    for Runner { year, day, path, execute } in &runners {
         if let Ok(data) = read_to_string(path) {
             let instant = Instant::now();
             let (answer1, answer2) = execute(data);
