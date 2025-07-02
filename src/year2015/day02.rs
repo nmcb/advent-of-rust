@@ -26,7 +26,7 @@ pub fn parse(input: &str) -> Vec<Present> {
         .collect();
     match presents {
         Ok(result) => result,
-        Err(msg) => panic!("error: {}", msg)
+        Err(msg) => panic!("error: {msg}")
     }
 }
 
