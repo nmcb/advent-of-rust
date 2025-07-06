@@ -1,3 +1,6 @@
+use std::fs::read_to_string;
+use std::path::Path;
+
 macro_rules! test {
     ($year:tt $($day:tt),*) => {
         pub mod $year {$(pub mod $day;)*}
@@ -7,3 +10,15 @@ macro_rules! test {
 test!(year2015
     day01, day02
 );
+
+
+fn input(year: &str, day: &str) -> String {
+    let path = Path::new("input").join(year).join(day).with_extension("txt");
+
+    if let Ok(data) = read_to_string(&path) {
+        data
+    } else {
+        panic!("Missing input! Place input file in {}", path.display());
+    }
+}
+

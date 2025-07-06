@@ -1,17 +1,16 @@
 use aoc::year2015::day02::*;
-
-const EXAMPLE: &str = "\
-2x3x4
-1x1x10";
+use crate::input;
 
 #[test]
-fn part1_test() {
-    let input = parse(EXAMPLE);
-    assert_eq!(solve1(&input), 101);
+fn answer1_test() {
+    let input = parse(input("year2015", "day02").as_str());
+    let answer = solve1(&input);
+    assert_eq!(answer, 1606483);
 }
 
 #[test]
-fn part2_test() {
-    let input = parse(EXAMPLE);
-    assert_eq!(solve2(&input), 48);
+fn answer2_test() {
+    let input = parse(input("year2015", "day02").as_str());
+    let answer = solve2(&input);
+    assert_eq!(answer, 3842356);
 }
