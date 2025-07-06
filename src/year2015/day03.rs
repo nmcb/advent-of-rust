@@ -15,10 +15,10 @@ pub fn solve2(input: &[Pos]) -> usize {
 }
 
 fn deliver(input: &[Pos], predicate: fn(usize) -> bool) -> usize {
-    let mut santa = ORIGIN;
-    let mut robot = ORIGIN;
+    let mut santa = ZERO;
+    let mut robot = ZERO;
     let mut set = HashSet::new();
-    set.insert(ORIGIN);
+    set.insert(ZERO);
 
     for (index, pos) in input.iter().enumerate() {
         if predicate(index) {
