@@ -21,4 +21,3 @@ fn input(year: &str, day: &str) -> String {
         panic!("Missing input! Place input file in {}", path.display());
     }
 }
-
