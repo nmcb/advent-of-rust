@@ -1,13 +1,13 @@
-use std::hash::*;
 use std::ops::*;
 
-pub const ORIGIN: Pos = Pos::new(0, 0);
-pub const UP: Pos     = Pos::new(0, -1);
-pub const DOWN: Pos   = Pos::new(0, 1);
-pub const LEFT: Pos   = Pos::new(-1, 0);
-pub const RIGHT: Pos  = Pos::new(1, 0);
+pub const ZERO: Pos  = Pos::new(0, 0);
 
-#[derive(Copy, Clone, Debug, Eq, PartialEq)]
+pub const UP: Pos    = Pos::new(0, -1);
+pub const DOWN: Pos  = Pos::new(0, 1);
+pub const LEFT: Pos  = Pos::new(-1, 0);
+pub const RIGHT: Pos = Pos::new(1, 0);
+
+#[derive(Eq, PartialEq, Copy, Clone, Debug, Hash)]
 pub struct Pos {
     pub x: i32,
     pub y: i32,
@@ -32,14 +32,6 @@ impl From<u8> for Pos {
             b'>' => RIGHT,
             _ => unreachable!(),
         }
-    }
-}
-
-impl Hash for Pos {
-    #[inline]
-    fn hash<H: Hasher>(&self, state: &mut H) {
-        state.write_u32(self.x as u32);
-        state.write_u32(self.y as u32);
     }
 }
 
