@@ -8,7 +8,7 @@ macro_rules! test {
 }
 
 test!(year2015
-    day01, day02
+    day01, day02, day03
 );
 
 
@@ -18,6 +18,6 @@ fn input(year: &str, day: &str) -> String {
     if let Ok(data) = read_to_string(&path) {
         data
     } else {
-        panic!("Missing input! Place input file in {}", path.display());
+        panic!("Missing input! Place input in {}", path.display());
     }
 }

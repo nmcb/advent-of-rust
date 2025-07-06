@@ -5,6 +5,10 @@ macro_rules! library {
     }
 }
 
+library!(util "Common utilities for the AOC"
+    pos
+);
+
 library!(year2015 "Fix the weather machine's snow function."
-    day01, day02
+    day01, day02, day03
 );
