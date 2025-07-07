@@ -5,7 +5,7 @@ use crate::input;
 fn answer1_test() {
     let data   = input("year2015", "day04");
     let input  = parse(data.as_str());
-    let answer = solve1(&input);
+    let answer = solve1(input);
     assert_eq!(answer, 282749);
 }
 
@@ -13,6 +13,6 @@ fn answer1_test() {
 fn answer2_test() {
     let data   = input("year2015", "day04");
     let input  = parse(data.as_str());
-    let answer = solve2(&input);
+    let answer = solve2(input);
     assert_eq!(answer, 9962624);
 }
