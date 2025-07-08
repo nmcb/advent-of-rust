@@ -11,15 +11,12 @@ fn main() {
         .chain(year2015())
         .collect();
 
-    let mut duration = Duration::ZERO;
-
     for Runner { year, day, path, execute } in &runners {
         if let Ok(data) = read_to_string(path) {
             let instant = Instant::now();
             let (answer1, answer2) = execute(data);
-            duration += instant.elapsed();
 
-            println!("{year} Day {day:02} [{}ms]", duration.as_millis());
+            println!("{year} Day {day:02} [{}ms]", instant.elapsed().as_millis());
             println!("    Answer 1: {answer1}");
             println!("    Answer 2: {answer2}");
         } else {
