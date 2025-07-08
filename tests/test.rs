@@ -8,7 +8,7 @@ macro_rules! test {
 }
 
 test!(year2015
-    day01, day02, day03, day04
+    day01, day02, day03, day04, day05
 );
 
 
