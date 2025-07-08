@@ -1,7 +1,7 @@
 use std::fs::read_to_string;
 use std::iter::empty;
 use std::path::{Path, PathBuf};
-use std::time::{Duration, Instant};
+use std::time::Instant;
 
 use aoc::*;
 
