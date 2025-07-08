@@ -10,5 +10,5 @@ library!(util "Common utilities for the AOC"
 );
 
 library!(year2015 "Fix the weather machine's snow function."
-    day01, day02, day03, day04
+    day01, day02, day03, day04, day05
 );
