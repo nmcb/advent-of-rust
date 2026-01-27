@@ -10,7 +10,7 @@ jobs:
   lint:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
       - run: rustup install nightly --profile default
       - run: rustup default nightly
       - run: cargo clippy --all-targets --all-features -- --deny warnings
@@ -18,6 +18,6 @@ jobs:
   test-stable:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
       - run: rustup default 1.88
       - run: cargo test --release
